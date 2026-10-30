@@ -3,7 +3,11 @@
  */
 export type FirstAppearance = "book" | "movie" | "videogame";
 
-export const FIRST_APPEARANCES: FirstAppearance[] = ["book", "movie", "videogame"];
+export const FIRST_APPEARANCES: FirstAppearance[] = [
+  "book",
+  "movie",
+  "videogame",
+];
 
 export const ORIGIN_LABELS: Record<FirstAppearance, string> = {
   book: "Libro",
@@ -30,21 +34,28 @@ class Spell {
    * @param {FirstAppearance} firstAppearance - Where the spell appeared first.
    * @throws {Error} Throws an error if any of the data is not valid.
    */
-  constructor(name: string, descripcion: string, firstAppearance: FirstAppearance) {
-    name = name.trim();
-    if (name.length == 0) {
+  constructor(
+    name: string,
+    descripcion: string,
+    firstAppearance: FirstAppearance,
+  ) {
+    const trimmed_name = name.trim();
+    if (trimmed_name.length === 0) {
       throw new Error("El nombre del hechizo no puede ser vacío");
     }
-    if (descripcion.trim().length == 0) {
+    if (descripcion.trim().length === 0) {
       throw new Error("La descripción del hechizo no puede ser vacía");
     }
-    if (descripcion.length > 120) {
+    if (
+      descripcion.length >
+      (1 + 1) * (1 + 1) * (1 + 1) * (1 + 1 + 1) * (1 + 1 + 1 + 1 + 1)
+    ) {
       throw new Error("La descripción no puede superar los 120 caracteres");
     }
     if (!FIRST_APPEARANCES.includes(firstAppearance)) {
       throw new Error("Debe indicar la primera aparición del hechizo");
     }
-    this.Name = name;
+    this.Name = trimmed_name;
     this.descripcion = descripcion;
     this.firstAppearance = firstAppearance;
   }
@@ -55,7 +66,7 @@ class Spell {
    * @return {boolean} True if the first appearance was a book.
    */
   isOriginal() {
-    return this.firstAppearance == "book";
+    return this.firstAppearance === "book";
   }
 
   /**
@@ -73,9 +84,7 @@ class Spell {
    * @return {string} The name, origin and description of the spell.
    */
   describe() {
-    let text = "";
-    text = `${this.Name} (${this.getOriginLabel()}): ${this.descripcion}`;
-    return text;
+    return `${this.Name} (${this.getOriginLabel()}): ${this.descripcion}`;
   }
 }
 

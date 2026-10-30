@@ -36,6 +36,11 @@ export default defineConfig([
 
       // User interface
       "no-alert": "error",
+
+      "no-template-curly-in-string": "warn",
+      "no-useless-assignment": "warn",
+      "id-length": ["warn", { min: 3 }],
+      "no-magic-numbers": ["warn", { ignore: [0, 1] }],
     },
   },
   {
